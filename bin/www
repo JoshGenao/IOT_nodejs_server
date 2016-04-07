@@ -34,8 +34,16 @@ server.on('listening', onListening);
  */
 var io = require("socket.io").listen(server);
 
-io.on("connection", function(socket) {
-  console.log('Client Connected');
+io.on("connection", function (socket) {
+    console.log('Client Connected');
+
+    // When the raspberry pi client emits 'pi client status' this listens
+    // and executes
+    socket.on('pi client status', function (data) {
+        // server will tell client to execute 'new raspberry pi status'
+        socket.broadcast.emit('new raspberry pi status', data);
+        
+    })
 })
 
 /**
