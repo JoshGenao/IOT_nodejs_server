@@ -2,15 +2,6 @@
  * Created by joshgenao on 4/6/16.
  */
 
-var origPercent = 30;
-
-// on page load...
-moveProgressBar(origPercent);
-
-// on browser resize...
-$(window).resize(function () {
-    moveProgressBar(origPercent);
-});
 
 var socket = io();
 
@@ -42,27 +33,19 @@ function updateProgressBars(data) {
 
 }
 
-// SIGNATURE PROGRESS
-function moveProgressBar(percent, $element_wrap, $element) {
-
-    console.log("moveProgressBar");
-    origPercent = percent;
-    var getPercent = percent / 100;
-    //var getProgressWrapWidth = $('.progress-wrap').width();
-    var getProgressWrapWidth = $element_wrap.width();
-    var progressTotal = getPercent * getProgressWrapWidth;
+$('.progress-wrap[data-progress-percent]').each(function () {
+    var percentage = ($(this).attr('data-progress-percent') / 100);
+    console.log("Num " + percentage);
+    var getProgressWrapWidth = $(this).width();
+    var progressTotal = percentage * getProgressWrapWidth;
+    console.log("Progress Total " + progressTotal);
     var animationLength = 2500;
 
-    // on page load, animate percentage bar to data percentage length
-    // .stop() used to prevent animation queueing
-    $element.find('div').stop().animate({
+    $(this).children().stop().animate({
         left: progressTotal
     }, animationLength);
+});
 
-    //$('.progress-bar').stop().animate({
-    //    left: progressTotal
-    //}, animationLength);
-}
 // Socket events
 
 // Whenever the server emits 'new raspberry pi status', update the progress bars
