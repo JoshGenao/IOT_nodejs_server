@@ -42,8 +42,12 @@ io.on("connection", function (socket) {
     socket.on('pi client status', function (data) {
         // server will tell client to execute 'new raspberry pi status'
         socket.broadcast.emit('new raspberry pi status', data);
-        
-    })
+    });
+
+    // Logs when a client has disconnected from the server
+    socket.on('disconnect', function () {
+        console.log('Client Disconnected');
+    });
 })
 
 /**

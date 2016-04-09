@@ -7,23 +7,24 @@
 <body>
 <h1>Server Status</h1>
 <div class="server_status">
-    <p>Hello World</p>
+    <p>CPU Status</p>
+    <div class="progress-wrap" data-progress-percent="25">
+        <div class="progress-bar"></div>
+    </div>
+    <p>Disk Usage</p>
+    <div class="progress-wrap" data-progress-percent="75">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div id="gg1" class="gauge"></div>
+
 </div>
 
-<div class="progress-wrap" data-progress-percent="25">
-    <div class="progress-bar"></div>
-</div>
-
-<div class="progress-wrap" data-progress-percent="75">
-    <div class="progress-bar"></div>
-</div>
-
-<div class="progress-wrap" data-progress-percent="5">
-    <div class="progress-bar"></div>
-</div>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="javascripts/raphael-2.1.4.min.js"></script>
+<script src="javascripts/justgage.js"></script>
 <script src="javascripts/main.js"></script>
 </body>
 </html>

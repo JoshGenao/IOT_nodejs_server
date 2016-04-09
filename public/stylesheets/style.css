@@ -10,17 +10,24 @@ a {
 .progress-wrap {
     width: 100%;
     height: 50px;
-  background: #f80;
-  margin: 20px 0;
-  overflow: hidden;
-  position: relative;
+    background: #f80;
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .progress-wrap .progress-bar {
     width: 100%;
     height: 50px;
-  background: #ddd;
-  left: 0;
-  position: absolute;
-  top: 0;
+    background: #ddd;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.gauge {
+    width: 200px;
+    height: 160px;
+    display: inline-block;
+    margin: 1em;
 }

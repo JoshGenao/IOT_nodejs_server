@@ -17,12 +17,18 @@ $(document).ready(function () {
         $('.progress-wrap[data-progress-percent]').each(Update);
     });
 
+    var g = new JustGage({
+        id: "gg1",
+        value: 90,
+        min: 0,
+        max: 100,
+        title: "Temperature"
+    });
+
     function Update() {
         var percentage = ($(this).attr('data-progress-percent') / 100);
-        console.log("Num " + percentage);
         var getProgressWrapWidth = $(this).width();
         var progressTotal = percentage * getProgressWrapWidth;
-        console.log("Progress Total " + progressTotal);
         var animationLength = 2500;
 
         $(this).children().stop().animate({
@@ -59,5 +65,5 @@ function updateProgressBars(data) {
 
 // Whenever the server emits 'new raspberry pi status', update the progress bars
 socket.on('new raspberry pi status', function (data) {
-    updateProgressBars(data);
+    $('.progress-wrap[data-progress-percent]').each(Update);
 });
