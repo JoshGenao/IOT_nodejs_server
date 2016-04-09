@@ -10,6 +10,28 @@ var socket = io();
  * Temperature of the Raspberry Pi client.
  */
 
+$(document).ready(function () {
+    $('.progress-wrap[data-progress-percent]').each(Update);
+
+    $(window).resize(function () {
+        $('.progress-wrap[data-progress-percent]').each(Update);
+    });
+
+    function Update() {
+        var percentage = ($(this).attr('data-progress-percent') / 100);
+        console.log("Num " + percentage);
+        var getProgressWrapWidth = $(this).width();
+        var progressTotal = percentage * getProgressWrapWidth;
+        console.log("Progress Total " + progressTotal);
+        var animationLength = 2500;
+
+        $(this).children().stop().animate({
+            left: progressTotal
+        }, animationLength);
+    }
+
+})
+
 function updateProgressBars(data) {
     /**
      * TODO: Need to be able to parse data and differentiate what data goes to each progress bar
@@ -32,19 +54,6 @@ function updateProgressBars(data) {
     var obj = JSON.parse(data);
 
 }
-
-$('.progress-wrap[data-progress-percent]').each(function () {
-    var percentage = ($(this).attr('data-progress-percent') / 100);
-    console.log("Num " + percentage);
-    var getProgressWrapWidth = $(this).width();
-    var progressTotal = percentage * getProgressWrapWidth;
-    console.log("Progress Total " + progressTotal);
-    var animationLength = 2500;
-
-    $(this).children().stop().animate({
-        left: progressTotal
-    }, animationLength);
-});
 
 // Socket events
 
